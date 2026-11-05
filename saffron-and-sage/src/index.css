@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+/*
+ * Tailwind v4 is configured in CSS. Everything below becomes a utility:
+ * --color-forest-800  ->  bg-forest-800, text-forest-800, border-forest-800 ...
+ * --font-display      ->  font-display
+ */
+@theme {
+  --font-display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-cream-50: #fdfaf3;
+  --color-cream-100: #f8f1e2;
+  --color-cream-200: #efe4cc;
+  --color-cream-300: #e2d3b3;
+
+  --color-forest-950: #0d1c15;
+  --color-forest-900: #142a20;
+  --color-forest-800: #1c3b2d;
+  --color-forest-700: #265039;
+  --color-forest-600: #316a4a;
+
+  --color-sage-200: #d5dec8;
+  --color-sage-300: #b9c8a8;
+  --color-sage-400: #9bb084;
+
+  --color-saffron-400: #e3a73b;
+  --color-saffron-500: #d4922a;
+  --color-saffron-700: #8f5d10;
+
+  --color-ink: #1e2621;
+  --color-ink-soft: #4a554e;
+
+  --animate-fade-up: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream-50);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-saffron-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--color-sage-300);
+  color: var(--color-forest-950);
+}
+
+/* Scroll-reveal (see components/ui/Reveal.tsx) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
